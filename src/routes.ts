@@ -1,7 +1,7 @@
-import mysql from "mysql2";
-import { dbConfig } from "./dbConfig";
-import express from "express";
-import { IUser, IModality, IStudent } from "./types";
+import mysql from 'mysql2';
+import { dbConfig } from './dbConfig';
+import express from 'express';
+import { IUser, IModality, IStudent } from './types';
 
 export const con = mysql.createPool(dbConfig);
 
@@ -10,7 +10,7 @@ export const routes = express.Router();
 async function getUsers(req?: any, res?: any) {
   const results = await con
     .promise()
-    .query("SELECT * FROM users")
+    .query('SELECT * FROM users')
     .then(([rows, fields]) => {
       return rows;
     })
@@ -24,7 +24,7 @@ async function getUsers(req?: any, res?: any) {
 async function getStudents(req?: any, res?: any) {
   const results = await con
     .promise()
-    .query("SELECT * FROM student")
+    .query('SELECT * FROM student')
     .then(([rows, fields]) => {
       return rows;
     })
@@ -38,7 +38,7 @@ async function getStudents(req?: any, res?: any) {
 async function getModality(req?: any, res?: any) {
   const results = await con
     .promise()
-    .query("SELECT * FROM modality")
+    .query('SELECT * FROM modality')
     .then(([rows, fields]) => {
       return rows;
     })
@@ -58,9 +58,9 @@ async function addUser(req?: any, res?: any) {
   };
   const results = await con
     .promise()
-    .query("INSERT INTO users VALUES ?", newUser)
+    .query('INSERT INTO users VALUES ?', newUser)
     .then(([rows, fields]) => {
-      console.log("results ", rows);
+      console.log('results ', rows);
       return rows;
     })
     .catch((err) => {
@@ -83,9 +83,9 @@ async function addStudents(req?: any, res?: any) {
   };
   const results = await con
     .promise()
-    .query("INSERT INTO student VALUES ?", newStudent)
+    .query('INSERT INTO student SET ?', newStudent)
     .then(([rows, fields]) => {
-      console.log("results ", rows);
+      console.log('results ', rows);
       return rows;
     })
     .catch((err) => {
@@ -110,7 +110,7 @@ async function updateUsers(req?: any, res?: any) {
   }
   const results = await con
     .promise()
-    .query("UPDATE users SET ? WHERE id = ?", [updateUser, id])
+    .query('UPDATE users SET ? WHERE id = ?', [updateUser, id])
     .then(([rows, fields]) => {
       return rows;
     })
@@ -146,7 +146,7 @@ async function updateStudents(req?: any, res?: any) {
   }
   const results = await con
     .promise()
-    .query("UPDATE student SET ? WHERE id = ?", [updateStudent, id])
+    .query('UPDATE student SET ? WHERE id = ?', [updateStudent, id])
     .then(([rows, fields]) => {
       return rows;
     })
